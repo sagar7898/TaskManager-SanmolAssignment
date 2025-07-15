@@ -133,6 +133,10 @@ This is the address where overdue task reminders will be sent.
 
 •	EPPlus used for Excel formatting
 
+•	Task export respects current filters:
+
+All, Completed, or Pending — only filtered tasks are exported
+
 •	Export includes filters and formatting
 
 
@@ -142,6 +146,10 @@ This is the address where overdue task reminders will be sent.
 •	Responsive mobile/tablet friendly layout
 
 •	Fallback delete confirmation view (no-JS compatibility)
+
+•	Enhanced Customer Dropdown in Task form using **Select2 plugin**:
+      • Adds search capability and placeholder support
+      • Improves UX when selecting from many customers
 
 
 
