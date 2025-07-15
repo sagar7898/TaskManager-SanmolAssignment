@@ -1,0 +1,17 @@
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\bin\Debug\net8.0\SanmolTaskManager_BLL.deps.json
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\bin\Debug\net8.0\SanmolTaskManager_BLL.dll
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\bin\Debug\net8.0\SanmolTaskManager_BLL.pdb
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\bin\Debug\net8.0\SanmolTaskManager_DAL.dll
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\bin\Debug\net8.0\SanmolTaskManager_Models.dll
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\bin\Debug\net8.0\SanmolTaskManager_DAL.pdb
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\bin\Debug\net8.0\SanmolTaskManager_Models.pdb
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.csproj.AssemblyReference.cache
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.AssemblyInfoInputs.cache
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.AssemblyInfo.cs
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.csproj.CoreCompileInputs.cache
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.csproj.CopyComplete
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.dll
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\obj\Debug\net8.0\refint\SanmolTaskManager_BLL.dll
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.pdb
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\obj\Debug\net8.0\ref\SanmolTaskManager_BLL.dll

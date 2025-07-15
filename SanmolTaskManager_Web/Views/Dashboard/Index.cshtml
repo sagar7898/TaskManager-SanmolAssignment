@@ -1,0 +1,265 @@
+﻿@model SanmolTaskManager_Models.DashboardStats
+
+<style>
+    .card-hover:hover {
+        transform: translateY(-4px);
+        transition: 0.3s ease;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+    }
+</style>
+
+@{
+    ViewData["Title"] = "Dashboard";
+    var recentTasks = ViewBag.RecentTasks as List<SanmolTaskManager_Models.TaskItem>;
+}
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-4 text-gray-800">📊 Task Summary Dashboard</h1>
+        <a asp-controller="Reminder" asp-action="Send" class="btn btn-warning">
+            <i class="fas fa-envelope"></i> Email Reminders
+        </a>
+    </div>
+
+    <!-- First row: Total Customers & Total Tasks -->
+    <div class="row">
+        <!-- Total Customers -->
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2 card-hover">
+                <div class="card-body d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Customers</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.TotalCustomers</div>
+                    </div>
+                    <i class="fas fa-users fa-2x text-primary"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Tasks -->
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-dark shadow h-100 py-2 card-hover">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Total Tasks</div>
+                            <div class="h5 mb-1 font-weight-bold text-gray-800">@Model.Total</div>
+                        </div>
+                        <i class="fas fa-tasks fa-2x text-gray-500"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="d-flex align-items-center my-4">
+        <hr class="flex-grow-1" />
+        <div class="px-3 text-muted font-weight-bold small">
+            <i class="fas fa-layer-group mr-1"></i> Task Status Overview
+        </div>
+        <hr class="flex-grow-1" />
+    </div>
+
+    <!-- Task Status Row -->
+    <div class="row">
+        <!-- Pending -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2 card-hover">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending</div>
+                            <div class="h5 mb-1 font-weight-bold text-gray-800">@Model.Pending</div>
+                        </div>
+                        <i class="fas fa-hourglass-half fa-2x text-warning"></i>
+                    </div>
+                    <div class="progress mt-2" style="height: 5px;">
+                        <div class="progress-bar bg-warning" role="progressbar"
+                             style="width: @(Model.Total == 0 ? 0 : (Model.Pending * 100 / Model.Total))%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completed -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2 card-hover">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Completed</div>
+                            <div class="h5 mb-1 font-weight-bold text-gray-800">@Model.Completed</div>
+                        </div>
+                        <i class="fas fa-check-circle fa-2x text-success"></i>
+                    </div>
+                    <div class="progress mt-2" style="height: 5px;">
+                        <div class="progress-bar bg-success" role="progressbar"
+                             style="width: @(Model.Total == 0 ? 0 : (Model.Completed * 100 / Model.Total))%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overdue -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-danger shadow h-100 py-2 card-hover">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Overdue</div>
+                            <div class="h5 mb-1 font-weight-bold text-gray-800">@Model.Overdue</div>
+                        </div>
+                        <i class="fas fa-exclamation-triangle fa-2x text-danger"></i>
+                    </div>
+                    <div class="progress mt-2" style="height: 5px;">
+                        <div class="progress-bar bg-danger" role="progressbar"
+                             style="width: @(Model.Total == 0 ? 0 : (Model.Overdue * 100 / Model.Total))%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2 card-hover">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Upcoming Tasks (3 Days)</div>
+                            <div class="h5 mb-1 font-weight-bold text-gray-800">@Model.Upcoming</div>
+                        </div>
+                        <i class="fas fa-calendar-day fa-2x text-info"></i>
+                    </div>
+                    <div class="progress mt-2" style="height: 5px;">
+                        <div class="progress-bar bg-info" role="progressbar"
+                             style="width: @(Model.Total == 0 ? 0 : (Model.Upcoming * 100 / Model.Total))%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="d-flex align-items-center my-4">
+        <hr class="flex-grow-1" />
+        <div class="px-3 text-muted font-weight-bold small">
+            <i class="fas fa-history mr-1"></i> Recent Activity - Last 5 Updated Tasks
+        </div>
+        <hr class="flex-grow-1" />
+    </div>
+
+    <!-- Recent Tasks Table -->
+    <div class="card shadow mb-5">
+        <div class="card-header bg-secondary text-white font-weight-bold">
+            🕒 Recent Activity - Last 5 Updated Tasks
+        </div>
+        <div class="card-body p-0">
+            @if (recentTasks != null && recentTasks.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover table-sm mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Title</th>
+                                <th>Customer</th>
+                                <th>Status</th>
+                                <th>Priority</th>
+                                <th>Due Date</th>
+                                <th>Updated</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var task in recentTasks)
+                            {
+                                <tr>
+                                    <td>@task.Title</td>
+                                    <td>@task.Customer?.Name</td>
+                                    <td>
+                                        <span class="badge @(task.Status == "Completed" ? "badge-success" : "badge-warning")">
+                                            @task.Status
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge
+                                            @(task.Priority == "High" ? "badge-danger" :
+                                              task.Priority == "Medium" ? "badge-info" : "badge-secondary")">
+                                            @task.Priority
+                                        </span>
+                                    </td>
+                                    <td>@task.DueDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@task.UpdatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p class="p-3 text-muted">No recent tasks found.</p>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $('a[href*="/Reminder/Send"]').on('click', function (e) {
+            e.preventDefault();
+            const url = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Send Reminder Emails?',
+                text: 'This will email all customers with overdue tasks.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Send Now',
+                cancelButtonText: 'Cancel'
+            }).then(result => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Sending...',
+                        text: 'Please wait while we send reminder email.',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    $.ajax({
+                        url: url,
+                        method: 'GET',
+                        success: function (response) {
+                            Swal.close();
+                            if (response.success) {
+                                showSuccess(response.message);
+                            } else {
+                                showInfo(response.message);
+                            }
+                        },
+                        error: function () {
+                            Swal.close();
+                            showError("Something went wrong while sending the email.");
+                        }
+                    });
+                }
+            });
+        });
+
+        @if (TempData["Success"] != null)
+        {
+            <text>showSuccess("@TempData["Success"]"); </text>
+        }
+        else if (TempData["Error"] != null)
+        {
+            <text>showError("@TempData["Error"]"); </text>
+        }
+        else if (TempData["Info"] != null)
+        {
+            <text>showInfo("@TempData["Info"]"); </text>
+        }
+    </script>
+}

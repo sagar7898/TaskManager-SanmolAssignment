@@ -1,0 +1,66 @@
+﻿@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+}
+
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-tasks"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Task Manager</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0" />
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item @(currentController == "Dashboard" ? "active" : "")">
+        <a class="nav-link" asp-controller="Dashboard" asp-action="Index">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider" />
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Manage
+    </div>
+
+    <!-- Nav Item - Customers -->
+    <li class="nav-item @(currentController == "Customer" ? "active" : "")">
+        <a class="nav-link" asp-controller="Customer" asp-action="Index">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Customers</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Tasks -->
+    <li class="nav-item @(currentController == "Task" ? "active" : "")">
+        <a class="nav-link" asp-controller="Task" asp-action="Index">
+            <i class="fas fa-fw fa-tasks"></i>
+            <span>Tasks</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Help Desk -->
+    <li class="nav-item @(currentController == "Help" ? "active" : "")">
+        <a class="nav-link" asp-controller="Help" asp-action="HelpIndex">
+            <i class="fas fa-fw fa-question-circle"></i>
+            <span>Help Desk</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block" />
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>

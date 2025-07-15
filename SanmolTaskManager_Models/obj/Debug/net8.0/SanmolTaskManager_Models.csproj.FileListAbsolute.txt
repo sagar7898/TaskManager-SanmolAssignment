@@ -1,0 +1,12 @@
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\bin\Debug\net8.0\SanmolTaskManager_Models.deps.json
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\bin\Debug\net8.0\SanmolTaskManager_Models.dll
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\bin\Debug\net8.0\SanmolTaskManager_Models.pdb
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.csproj.AssemblyReference.cache
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.AssemblyInfoInputs.cache
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.AssemblyInfo.cs
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.csproj.CoreCompileInputs.cache
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.dll
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\obj\Debug\net8.0\refint\SanmolTaskManager_Models.dll
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.pdb
+E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\obj\Debug\net8.0\ref\SanmolTaskManager_Models.dll

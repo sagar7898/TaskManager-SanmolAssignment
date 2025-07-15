@@ -1,0 +1,335 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_Web\\SanmolTaskManager_Web.csproj": {}
+  },
+  "projects": {
+    "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_BLL\\SanmolTaskManager_BLL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_BLL\\SanmolTaskManager_BLL.csproj",
+        "projectName": "SanmolTaskManager_BLL",
+        "projectPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_BLL\\SanmolTaskManager_BLL.csproj",
+        "packagesPath": "C:\\Users\\sagar\\.nuget\\packages\\",
+        "outputPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_BLL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\sagar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_DAL\\SanmolTaskManager_DAL.csproj": {
+                "projectPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_DAL\\SanmolTaskManager_DAL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "EPPlus": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.13.0, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.13.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_DAL\\SanmolTaskManager_DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_DAL\\SanmolTaskManager_DAL.csproj",
+        "projectName": "SanmolTaskManager_DAL",
+        "projectPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_DAL\\SanmolTaskManager_DAL.csproj",
+        "packagesPath": "C:\\Users\\sagar\\.nuget\\packages\\",
+        "outputPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_DAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\sagar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_Models\\SanmolTaskManager_Models.csproj": {
+                "projectPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_Models\\SanmolTaskManager_Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_Models\\SanmolTaskManager_Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_Models\\SanmolTaskManager_Models.csproj",
+        "projectName": "SanmolTaskManager_Models",
+        "projectPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_Models\\SanmolTaskManager_Models.csproj",
+        "packagesPath": "C:\\Users\\sagar\\.nuget\\packages\\",
+        "outputPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\sagar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_Web\\SanmolTaskManager_Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_Web\\SanmolTaskManager_Web.csproj",
+        "projectName": "SanmolTaskManager_Web",
+        "projectPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_Web\\SanmolTaskManager_Web.csproj",
+        "packagesPath": "C:\\Users\\sagar\\.nuget\\packages\\",
+        "outputPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\sagar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_BLL\\SanmolTaskManager_BLL.csproj": {
+                "projectPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_BLL\\SanmolTaskManager_BLL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "EPPlus": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Hangfire": {
+              "target": "Package",
+              "version": "[1.8.20, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.20, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.20, )"
+            },
+            "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter": {
+              "target": "Package",
+              "version": "[8.0.11, )"
+            },
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.11, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

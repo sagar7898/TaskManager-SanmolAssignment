@@ -1,0 +1,245 @@
+﻿@model IEnumerable<SanmolTaskManager_Models.TaskItem>
+
+@{
+    ViewData["Title"] = "Task List";
+    var statusFilter = ViewBag.StatusFilter as string ?? "Pending";
+    int currentPage = ViewBag.CurrentPage ?? 1;
+    int totalPages = ViewBag.TotalPages ?? 1;
+    string statusTitle = statusFilter switch
+    {
+        "Pending" => "Total Pending Tasks",
+        "Completed" => "Total Completed Tasks",
+        _ => "Total Tasks"
+    };
+    int totalFilteredCount = ViewBag.TotalFilteredCount ?? 0;
+}
+
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Task List</h1>
+
+    <!-- Title Row with Reminder Button on Right -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0 text-primary">
+                <i class="fas fa-tasks"></i> @statusTitle:
+                <span class="badge badge-pill badge-success">@totalFilteredCount</span>
+            </h5>
+        </div>
+
+        <a href="/Reminder/Send" class="btn btn-warning" id="sendReminderBtn">
+            <i class="fas fa-envelope"></i> Send Email Reminders
+        </a>
+    </div>
+
+    <div class="mb-3 d-flex justify-content-between align-items-center">
+        <div class="btn-toolbar" role="toolbar">
+            <div class="btn-group mb-2 mr-2" role="group">
+                <a asp-action="AddOrEdit" class="btn btn-primary">
+                    <i class="fas fa-plus-circle"></i> Add Task
+                </a>
+            </div>
+            <div class="btn-group mb-2 mr-2" role="group">
+                <button type="button" class="btn btn-success" onclick="exportWithSuccess()">
+                    <i class="fas fa-file-excel"></i> Export to Excel
+                </button>
+            </div>
+        </div>
+
+        <div>
+            <form asp-action="Index" method="get" class="form-inline">
+                <label class="mr-2">Filter:</label>
+                <select name="status" onchange="this.form.submit()" class="form-control mr-2">
+                    <option value="Pending" selected="@(statusFilter == "Pending" ? "selected" : null)">Pending</option>
+                    <option value="Completed" selected="@(statusFilter == "Completed" ? "selected" : null)">Completed</option>
+                    <option value="All" selected="@(statusFilter == "All" ? "selected" : null)">All</option>
+                </select>
+
+                <label class="mr-2 ml-3">Page Size:</label>
+                <select name="pageSize" onchange="this.form.submit()" class="form-control">
+                    <option value="5" selected="@(ViewBag.PageSize == 5 ? "selected" : null)">5</option>
+                    <option value="10" selected="@(ViewBag.PageSize == 10 ? "selected" : null)">10</option>
+                    <option value="20" selected="@(ViewBag.PageSize == 20 ? "selected" : null)">20</option>
+                </select>
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-body p-0">
+            <div id="taskTableWrapper">
+                @await Html.PartialAsync("_TaskTable", Model)
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '.mark-complete', function () {
+                var id = $(this).data('id');
+
+                Swal.fire({
+                    title: 'Mark as Completed?',
+                    text: "Do you want to mark this task as completed?",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#28a745',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Yes, mark it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '/Task/MarkComplete/' + id,
+                            type: 'POST',
+                            success: function () {
+                                $('#task-row-' + id).fadeOut(); // Make sure your <tr> has this id!
+                                Swal.fire(
+                                    'Completed!',
+                                    'The task has been marked as completed.',
+                                    'success'
+                                );
+                                fetchTasks(); // Reload the table via AJAX
+                            },
+                            error: function () {
+                                Swal.fire(
+                                    'Error!',
+                                    'Something went wrong.',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                });
+            });
+
+            $('a[href*="/Reminder/Send"]').on('click', function (e) {
+                e.preventDefault();
+                const url = $(this).attr('href');
+
+                Swal.fire({
+                    title: 'Send Reminder Emails?',
+                    text: 'This will email all customers with overdue tasks.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Send Now',
+                    cancelButtonText: 'Cancel'
+                }).then(result => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                });
+            });
+
+            $('#sendReminderBtn').on('click', function (e) {
+                e.preventDefault();
+                const url = $(this).attr('href');
+
+                Swal.fire({
+                    title: 'Send Reminder Emails?',
+                    text: 'This will email all customers with overdue tasks.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Send Now',
+                    cancelButtonText: 'Cancel'
+                }).then(result => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Sending...',
+                            text: 'Please wait while we send reminder emails.',
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+                        $.ajax({
+                            url: url,
+                            method: 'GET',
+                            success: function (response) {
+                                Swal.close();
+                                if (response.success) {
+                                    showSuccess(response.message);
+                                } else {
+                                    showInfo(response.message);
+                                }
+                            },
+                            error: function () {
+                                Swal.close();
+                                showError("Something went wrong while sending reminders.");
+                            }
+                        });
+                    }
+                });
+            });
+
+            function fetchTasks(page = 1, sortOrder = getCurrentSort()) {
+                const status = $("select[name='status']").val();
+                const pageSize = $("select[name='pageSize']").val();
+
+                $.ajax({
+                    url: `/Task/LoadTable?status=${status}&page=${page}&pageSize=${pageSize}&sortOrder=${sortOrder}`,
+                    method: 'GET',
+                    success: function (data) {
+                        $('#taskTableWrapper').html(data);
+                    },
+                    error: function () {
+                        showError("Failed to load tasks.");
+                    }
+                });
+            }
+
+            function getCurrentSort() {
+                return $('#sortDueDate')?.data('sort') || 'desc';
+            }
+
+            $(document).ready(function () {
+                $("select[name='status'], select[name='pageSize']").on('change', function () {
+                    fetchTasks();
+                });
+
+                $(document).on('click', '.ajax-page-link', function (e) {
+                    e.preventDefault();
+                    const page = $(this).data('page');
+                    fetchTasks(page);
+                });
+
+                $(document).on('click', '#sortDueDate', function (e) {
+                    e.preventDefault();
+                    const currentSort = $(this).data('sort');
+                    $(this).data('sort', currentSort === 'asc' ? 'desc' : 'asc');
+                    fetchTasks(1, currentSort === 'asc' ? 'desc' : 'asc');
+                });
+            });
+        });
+    </script>
+
+    <script>
+        function exportWithSuccess() {
+            showSuccess("Excel file is being downloaded...");
+
+            setTimeout(function () {
+                window.location.href = "/Task/ExportToExcel?status=" + encodeURIComponent(getCurrentStatus());
+            }, 1500);
+        }
+
+        function getCurrentStatus() {
+            return document.querySelector("select[name='status']")?.value || "Pending";
+        }
+
+        @if (TempData["Success"] != null)
+        {
+            <text>showSuccess("@TempData["Success"]"); </text>
+        }
+        else if (TempData["Error"] != null)
+        {
+            <text>showError("@TempData["Error"]"); </text>
+        }
+        else if (TempData["Info"] != null)
+        {
+            <text>showInfo("@TempData["Info"]"); </text>
+        }
+    </script>
+}

@@ -1,0 +1,112 @@
+﻿@model SanmolTaskManager_Models.TaskItem
+
+@{
+    ViewData["Title"] = Model.Id == 0 ? "Add Task" : "Edit Task";
+    var customers = ViewBag.Customers as IEnumerable<SanmolTaskManager_Models.Customer>;
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <div class="py-3 px-4 rounded shadow-sm mb-4 text-center"
+                 style="background: radial-gradient(circle, #ffffff 0%, #e0e9ff 80%);">
+                <h2 class="text-primary font-weight-bold mb-0">
+                    <i class="fas @(Model.Id == 0 ? "fa-tasks" : "fa-edit") mr-2"></i> @ViewData["Title"]
+                </h2>
+            </div>
+
+            <div class="card shadow rounded-lg border-0">
+                <div class="card-body p-4">
+
+                    <form asp-action="AddOrEdit" method="post">
+                        <input type="hidden" asp-for="Id" />
+
+                        <!-- Task Title -->
+                        <div class="form-group mb-4">
+                            <label asp-for="Title" class="font-weight-bold text-dark required"></label>
+                            <div class="input-group">
+                                <input asp-for="Title" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="form-group mb-4">
+                            <label asp-for="Description" class="font-weight-bold text-dark required"></label>
+                            <textarea asp-for="Description" class="form-control" rows="4" placeholder="Enter detailed description..."></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Due Date -->
+                        <div class="form-group mb-4">
+                            <label asp-for="DueDate" class="font-weight-bold text-dark required"></label>
+                            <input asp-for="DueDate" class="form-control" type="date"
+                                   min="@DateTime.Today.ToString("yyyy-MM-dd")"
+                                   value="@(Model.DueDate == DateTime.MinValue ? "" : Model.DueDate.ToString("yyyy-MM-dd"))" />
+                            <span asp-validation-for="DueDate" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Customer -->
+                        <div class="form-group mb-4">
+                            <label asp-for="CustomerId" class="font-weight-bold text-dark required"></label>
+                            <select asp-for="CustomerId" class="form-control customer-dropdown" asp-items="@(new SelectList(customers, "Id", "Name"))">
+                                <option value="">-- Select Customer --</option>
+                            </select>
+                            <span asp-validation-for="CustomerId" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="form-group mb-4">
+                            <label asp-for="Status" class="font-weight-bold text-dark required"></label>
+                            <select asp-for="Status" class="form-control">
+                                <option value="Pending">Pending</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Priority -->
+                        <div class="form-group mb-5">
+                            <label asp-for="Priority" class="font-weight-bold text-dark required"></label>
+                            <select asp-for="Priority" class="form-control">
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                            <span asp-validation-for="Priority" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="form-group d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary px-4">
+                                <i class="fas fa-arrow-left mr-1"></i> Back
+                            </a>
+                            <button type="submit" class="btn btn-primary px-4 shadow">
+                                <i class="fas fa-save mr-1"></i> Save
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script>
+            $(document).ready(function () {
+                $('.customer-dropdown').select2({
+                    placeholder: "Search customer...",
+                    allowClear: true
+                });
+            });
+        </script>
+
+    }
+}

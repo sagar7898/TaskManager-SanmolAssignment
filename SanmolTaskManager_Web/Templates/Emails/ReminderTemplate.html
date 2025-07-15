@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Task Reminder</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .email-container {
+            background-color: #ffffff;
+            max-width: 700px;
+            margin: 30px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background-color: #4e73df;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+            .header h2 {
+                margin: 0;
+            }
+
+        .content {
+            padding: 30px;
+            color: #333;
+        }
+
+            .content p {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+
+        .task-card {
+            background-color: #f8f9fc;
+            border-left: 4px solid #4e73df;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+            .task-card strong {
+                display: inline-block;
+                width: 100px;
+            }
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: #aaa;
+            background-color: #f4f6f8;
+        }
+
+        .emoji {
+            font-size: 22px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h2><span class="emoji">📋</span>Daily Overdue Task Summary</h2>
+        </div>
+        <div class="content">
+            <p>Dear <strong>Admin</strong>,</p>
+
+            <p>You have the following <strong>{{TaskCount}}</strong> overdue task(s) that need your attention:</p>
+
+            {{TaskCards}}
+
+
+            <p>Please login to the Task Manager System to review and update these tasks.</p>
+
+            <p>Thank you,<br><strong>Sanmol Software Solutions</strong></p>
+        </div>
+        <div class="footer">
+            This is an automated message. Please do not reply.
+        </div>
+    </div>
+</body>
+</html>
