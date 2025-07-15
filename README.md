@@ -184,10 +184,12 @@ All, Completed, or Pending — only filtered tasks are exported
    
 3. Update the connection string in appsettings.json:
    "ConnectionStrings": { "DefaultConnection": "Server=YOUR_SERVER_NAME;Database=SanmolTaskManagerDb;Trusted_Connection=True;TrustServerCertificate=True" }
+   
    If using SQL Authentication:
+   
    "Server=YOUR_SERVER_NAME;Database=SanmolTaskManagerDb;User Id=your_Id;Password=your_password;"
 
-4. Press F5 or Ctrl+F5 to run the project
+5. Press F5 or Ctrl+F5 to run the project
 
    
    
