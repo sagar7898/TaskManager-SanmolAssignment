@@ -117,6 +117,14 @@ Default Admin Login:
 
 •	Custom HTML email template is used for a clean and professional appearance
 
+🛠️ Note:
+To test email functionality, make sure to update the following value in **appsettings.json**:
+
+"AdminReceiver": "your-email@gmail.com"
+
+This is the address where overdue task reminders will be sent.
+
+
 
 
 📄 Excel Export
