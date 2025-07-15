@@ -6,7 +6,6 @@ This is a lightweight ASP.NET Core MVC application developed as part of an API D
 The application includes customer management, task tracking, filtering, dashboard analytics, and reminder features with a clean UI built using SB Admin 2 Bootstrap template.
 
 
-
 🚀 Technologies Used
 
 •	ASP.NET Core MVC (.NET 8.0)
