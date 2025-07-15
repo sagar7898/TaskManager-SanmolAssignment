@@ -5,6 +5,7 @@ This is a lightweight ASP.NET Core MVC application developed as part of an API D
 The application includes customer management, task tracking, filtering, dashboard analytics, and reminder features with a clean UI built using SB Admin 2 Bootstrap template.
 
 🚀 Technologies Used
+
 •	ASP.NET Core MVC (.NET 8.0)
 •	Entity Framework Core (Code First)
 •	SQL Server
@@ -14,16 +15,19 @@ The application includes customer management, task tracking, filtering, dashboar
 •	Hangfire (Background Email Scheduler)
 
 🔐 Authentication
+
 •	Simple login screen with hardcoded admin credentials
 •	No database-based user/role management
 •	Used only to restrict access to internal admin features
 Default Admin Login:
+
 📧 UserId: admin
 🔒 Password: 1234
 
 📁 Features Overview
 
 👥 Customer Management
+
 •	View all customers in a searchable table
 •	Columns: Name, Phone, Email, Total Tasks
 •	Add/Edit customer with:
@@ -33,6 +37,7 @@ Default Admin Login:
 •	Redirect to the last visited page after Add/Edit (pagination-aware)
 
 ✅ Task Management
+
 •	View and manage all tasks from a centralized task list
 •	Filter tasks by: Pending (default), Completed, or All
 •	Columns: Description, Customer (link), Due Date, Status (color-coded), Priority
@@ -44,6 +49,7 @@ Default Admin Login:
 •	Add/Edit Task Form: Fields: Description (required), Due Date, Status (Pending/Completed), Priority (High/Medium/Low), Customer (dropdown)
 
 📊 Dashboard
+
 •	Visual overview of:
 •	- Total Customers
 •	- Total Tasks
@@ -54,6 +60,7 @@ Default Admin Login:
 •	Cards auto-update using database queries
 
 ✉️ Email Reminder (Overdue Tasks)
+
 •	Sends automated email reminders to customers for their overdue tasks
 •	Implemented using Hangfire for background scheduling and background job execution
 •	Manual Email Send: A "Send Email" button is available on the Task Index page to trigger reminders on demand
@@ -62,26 +69,31 @@ Default Admin Login:
 •	Custom HTML email template is used for a clean and professional appearance
 
 📄 Excel Export
+
 •	Export Tasks and Customers as Excel files
 •	EPPlus used for Excel formatting
 •	Export includes filters and formatting
 
 🧩 Bonus Features
+
 •	Responsive mobile/tablet friendly layout
 •	Fallback delete confirmation view (no-JS compatibility)
 
 🏗️ Project Structure
+
 •	SanmolTaskManager_Models → Contains all model classes shared across the application
 •	SanmolTaskManager_DAL → Contains DbContext and Generic Repository pattern implementation using Entity Framework Core
 •	SanmolTaskManager_BLL → Business Logic Layer with services like CustomerService, TaskService, and EmailService
 •	SanmolTaskManager_Web → ASP.NET Core MVC web project containing Controllers, Views, UI, and front-end logic, custom app-utils.js , templates
 
 ⚙️ Prerequisites
+
 •	.NET 8.0 SDK
 •	Visual Studio 2022 or later
 •	SQL Server Management Studio (SSMS) 18+
 
 🛠️ Setup Instructions
+
 1. Clone or Download the Repository
    git clone https://github.com/sagar7898/TaskManager-SanmolAssignment.git
 2. Open the Solution in Visual Studio 2022 or newer
@@ -92,11 +104,13 @@ Default Admin Login:
 4. Press F5 or Ctrl+F5 to run the project
    
 🧪 Database Setup
+
 •	Create a new database named SanmolTaskManagerDb in SQL Server
 •	Ensure SQL Server is running
 •	Execute the provided SQL Script to set up the database schema and data
 
 🙋‍♂️ Contact
+
 For questions or improvements, contact:
 Sagar Nachankar – sagarnachankar77@gmail.com
 
