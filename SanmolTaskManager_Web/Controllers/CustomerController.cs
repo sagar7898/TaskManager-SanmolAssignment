@@ -101,6 +101,8 @@ namespace SanmolTaskManager_Web.Controllers
         {
             try
             {
+                ModelState.Remove("Page");
+
                 if (!ModelState.IsValid)
                 {
                     // Return validation error for AJAX

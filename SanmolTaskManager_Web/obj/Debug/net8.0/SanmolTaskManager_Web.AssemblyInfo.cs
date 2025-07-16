@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SanmolTaskManager_Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a0578daf26b570efdf6682b78ba6a527841969b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6fb0e7e515c462d7c55bfe34a2c28e1e704d2be8")]
 [assembly: System.Reflection.AssemblyProductAttribute("SanmolTaskManager_Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SanmolTaskManager_Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
