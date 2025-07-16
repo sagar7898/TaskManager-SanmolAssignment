@@ -97,52 +97,56 @@ namespace SanmolTaskManager_Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit(Customer customer)
+        public async Task<IActionResult> AddOrEdit(Customer customer, int Page = 1)
         {
             try
             {
                 if (!ModelState.IsValid)
-                    return View(customer);
+                {
+                    // Return validation error for AJAX
+                    return Json(new { success = false, message = "Validation failed.", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
+                }
 
-                // Phone uniqueness check
                 bool isPhoneUnique = await _customerService.IsPhoneUniqueAsync(customer.Phone, customer.Id);
                 if (!isPhoneUnique)
-                {
-                    ModelState.AddModelError("Phone", "Phone number already exists.");
-                    return View(customer);
-                }
+                    return Json(new { success = false, message = "Phone number already exists." });
 
-                // Email uniqueness check
                 bool isEmailUnique = await _customerService.IsEmailUniqueAsync(customer.Email, customer.Id);
                 if (!isEmailUnique)
-                {
-                    ModelState.AddModelError("Email", "Email already exists.");
-                    return View(customer);
-                }
+                    return Json(new { success = false, message = "Email already exists." });
 
                 if (customer.Id == 0)
                 {
                     await _customerService.AddAsync(customer);
-                    TempData["Success"] = "Customer added successfully!";
 
-                    // ✅ Redirect to last page
                     int totalCustomers = await _customerService.GetTotalCountAsync();
                     int lastPage = (int)Math.Ceiling((double)totalCustomers / PageSize);
 
-                    return RedirectToAction(nameof(Index), new { page = lastPage });
+                    return Json(new
+                    {
+                        success = true,
+                        message = "Customer added successfully!",
+                        redirectUrl = Url.Action(nameof(Index), new { page = lastPage })
+                    });
                 }
                 else
                 {
                     await _customerService.UpdateAsync(customer);
-                    TempData["Success"] = "Customer updated successfully!";
-                    return RedirectToAction(nameof(Index));
+
+                    return Json(new
+                    {
+                        success = true,
+                        message = "Customer updated successfully!",
+                        redirectUrl = Url.Action(nameof(Index), new { page = Page })
+                    });
                 }
             }
             catch (Exception ex)
             {
-                return View("Error", new ErrorViewModel { RequestId = ex.Message });
+                return Json(new { success = false, message = ex.Message });
             }
         }
+
 
 
 
@@ -196,7 +200,7 @@ namespace SanmolTaskManager_Web.Controllers
             }
         }
 
-        
+
 
         public async Task<IActionResult> Details(int id)
         {

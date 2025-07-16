@@ -22,7 +22,7 @@ namespace SanmolTaskManager_Models
 
         [Required(ErrorMessage = "Phone number is required.")]
         [Remote("IsPhoneUnique", "Customer", AdditionalFields = "Id", ErrorMessage = "Phone number already exists")]
-        [RegularExpression(@"^\d{10}$", ErrorMessage = "Enter a valid 10-digit phone number")]
+        
         public string Phone { get; set; }
 
         public bool IsDeleted { get; set; }

@@ -4,6 +4,13 @@
     ViewData["Title"] = Model.Id == 0 ? "Add New Customer" : "Edit Customer";
 }
 
+<style>
+    .is-invalid {
+        border-color: #dc3545 !important;
+    }
+
+</style>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-8">
@@ -18,6 +25,8 @@
                 <div class="card-body">
                     <form id="customerForm" asp-action="AddOrEdit" method="post">
                         <input type="hidden" asp-for="Id" />
+                        <input type="hidden" name="Page" value="@Context.Request.Query["page"]" />
+
 
                         <div class="form-group mb-3">
                             <label asp-for="Name" class="font-weight-bold text-dark required"></label>
@@ -33,7 +42,7 @@
 
                         <div class="form-group mb-3">
                             <label asp-for="Phone" class="font-weight-bold text-dark required"></label>
-                            <input asp-for="Phone" class="form-control" id="phone" />
+                            <input asp-for="Phone" class="form-control" id="phone" name="Phone" />
                             <span asp-validation-for="Phone" class="text-danger"></span>
                         </div>
 
@@ -54,6 +63,69 @@
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+        var phoneInput = document.querySelector("#phone");
+        var iti = window.intlTelInput(phoneInput, {
+            initialCountry: "in",
+            separateDialCode: true,
+            nationalMode: false,
+            formatOnDisplay: true,
+
+        });
+
+        // Set number in edit mode
+        const existingPhone = "@Html.Raw(Model.Phone)";
+        if (existingPhone && existingPhone.length > 0) {
+            iti.setNumber(existingPhone);
+        }
+
+
+        // AJAX form submit
+        $(document).ready(function () {
+            $("#customerForm").off("submit").on("submit", function (e) {
+                e.preventDefault();
+
+                // Client-side validation check
+                if (!$(this).valid()) {
+                    return;
+                }
+
+                // intl-tel-input validation
+                if (!iti.isValidNumber()) {
+                    showError("Please enter a valid phone number.");
+                    phoneInput.classList.add("is-invalid");
+                    return;
+                } else {
+                    phoneInput.classList.remove("is-invalid");
+                }
+
+                // Set full phone value
+                phoneInput.value = iti.getNumber();
+
+                // Submit via AJAX
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (res) {
+                        if (res.success) {
+                            showSuccess(res.message || "Customer saved successfully.");
+                            setTimeout(() => {
+                                window.location.href = res.redirectUrl;
+                            }, 1500);
+                        } else {
+                            showError(res.message || "Something went wrong.");
+                        }
+                    },
+                    error: function (err) {
+                        showError("Server error occurred.");
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    </script>
 
     <script>
         @if (TempData["Success"] != null)

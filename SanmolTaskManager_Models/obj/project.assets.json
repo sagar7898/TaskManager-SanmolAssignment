@@ -7657,11 +7657,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_Models\\SanmolTaskManager_Models.csproj",
+      "projectUniqueName": "C:\\Users\\sagar\\OneDrive\\Desktop\\TaskManager-SanmolAssignment\\SanmolTaskManager_Models\\SanmolTaskManager_Models.csproj",
       "projectName": "SanmolTaskManager_Models",
-      "projectPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_Models\\SanmolTaskManager_Models.csproj",
+      "projectPath": "C:\\Users\\sagar\\OneDrive\\Desktop\\TaskManager-SanmolAssignment\\SanmolTaskManager_Models\\SanmolTaskManager_Models.csproj",
       "packagesPath": "C:\\Users\\sagar\\.nuget\\packages\\",
-      "outputPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_Models\\obj\\",
+      "outputPath": "C:\\Users\\sagar\\OneDrive\\Desktop\\TaskManager-SanmolAssignment\\SanmolTaskManager_Models\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

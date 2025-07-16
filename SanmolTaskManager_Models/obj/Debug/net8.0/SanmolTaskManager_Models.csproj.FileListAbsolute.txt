@@ -10,3 +10,16 @@ E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskMana
 E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\obj\Debug\net8.0\refint\SanmolTaskManager_Models.dll
 E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.pdb
 E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_Models\obj\Debug\net8.0\ref\SanmolTaskManager_Models.dll
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_Models\bin\Debug\net8.0\SanmolTaskManager_Models.deps.json
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_Models\bin\Debug\net8.0\SanmolTaskManager_Models.dll
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_Models\bin\Debug\net8.0\SanmolTaskManager_Models.pdb
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.csproj.AssemblyReference.cache
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.AssemblyInfoInputs.cache
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.AssemblyInfo.cs
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.csproj.CoreCompileInputs.cache
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.sourcelink.json
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.dll
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_Models\obj\Debug\net8.0\refint\SanmolTaskManager_Models.dll
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_Models\obj\Debug\net8.0\SanmolTaskManager_Models.pdb
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_Models\obj\Debug\net8.0\ref\SanmolTaskManager_Models.dll

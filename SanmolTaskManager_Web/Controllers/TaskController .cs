@@ -135,8 +135,6 @@ namespace SanmolTaskManager_Web.Controllers
 
                 task.Status = "Completed";
                 await _taskService.UpdateAsync(task);
-                TempData["Success"] = "Task marked as completed!";
-
                 return Ok(new { success = true });
             }
             catch (Exception ex)

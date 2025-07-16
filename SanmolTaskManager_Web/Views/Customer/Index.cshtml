@@ -53,7 +53,7 @@
                                 <td>@customer.Phone</td>
                                 <td>@(ViewBag.TaskCounts.ContainsKey(customer.Id) ? ViewBag.TaskCounts[customer.Id] : 0)</td>
                                 <td>
-                                    <a class="btn btn-sm btn-primary" asp-action="AddOrEdit" asp-route-id="@customer.Id">
+                                    <a class="btn btn-sm btn-primary" asp-action="AddOrEdit" asp-route-id="@customer.Id" asp-route-page="@ViewBag.CurrentPage">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
                                     <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@customer.Id">
