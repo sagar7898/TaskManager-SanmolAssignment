@@ -1,9 +1,9 @@
-﻿@model IEnumerable<SanmolTaskManager_Models.TaskItem>
+﻿@model SanmolTaskManager_Models.ViewModels.TaskIndexViewModel
 
 @{
-    var statusFilter = ViewBag.StatusFilter as string ?? "Pending";
-    int currentPage = ViewBag.CurrentPage ?? 1;
-    int totalPages = ViewBag.TotalPages ?? 1;
+    var statusFilter = Model.Status ?? "Pending";
+    int currentPage = Model.CurrentPage;
+    int totalPages = Model.TotalPages;
 }
 
 <div class="table-responsive">
@@ -13,9 +13,9 @@
                 <th>Description</th>
                 <th>Customer</th>
                 <th>
-                    <a href="#" id="sortDueDate" data-sort="@ViewBag.SortOrder" class="text-dark">
+                    <a href="#" id="sortDueDate" data-sort="@Model.SortOrder" class="text-dark">
                         Due Date
-                        <i class="fas @(ViewBag.SortOrder == "asc" ? "fa-sort-up" : "fa-sort-down") ml-1"></i>
+                        <i class="fas @(Model.SortOrder == "asc" ? "fa-sort-up" : "fa-sort-down") ml-1"></i>
                     </a>
                 </th>
                 <th>Status</th>
@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            @if (!Model.Any())
+            @if (!Model.Tasks.Any())
             {
                 <tr>
                     <td colspan="6" class="text-center text-muted p-4">
@@ -34,7 +34,7 @@
             }
             else
             {
-                foreach (var task in Model)
+                foreach (var task in Model.Tasks)
                 {
                     <tr>
                         <td>@task.Description</td>
@@ -57,9 +57,15 @@
                             </span>
                         </td>
                         <td>
-                            <a asp-action="AddOrEdit" asp-route-id="@task.Id" class="btn btn-sm btn-outline-primary">
+                            <a asp-action="AddOrEdit"
+                               asp-route-id="@task.Id"
+                               asp-route-page="@Model.CurrentPage"
+                               asp-route-pageSize="@Model.PageSize"
+                               asp-route-statusFilter="@Model.Status"
+                               class="btn btn-sm btn-outline-primary">
                                 <i class="fas fa-edit"></i>
                             </a>
+
                             @if (task.Status != "Completed")
                             {
                                 <button class="btn btn-sm btn-outline-success mark-complete" data-id="@task.Id">
@@ -75,13 +81,13 @@
 </div>
 
 <!-- AJAX Pagination -->
-@if (totalPages > 1)
+@if (Model.TotalPages > 1)
 {
     <nav class="mt-3">
         <ul class="pagination justify-content-center">
-            @for (int i = 1; i <= totalPages; i++)
+            @for (int i = 1; i <= Model.TotalPages; i++)
             {
-                <li class="page-item @(i == currentPage ? "active" : "")">
+                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
                     <a class="page-link ajax-page-link" href="#" data-page="@i">@i</a>
                 </li>
             }

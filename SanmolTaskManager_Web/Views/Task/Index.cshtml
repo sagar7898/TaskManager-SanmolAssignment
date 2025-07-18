@@ -1,17 +1,17 @@
-﻿@model IEnumerable<SanmolTaskManager_Models.TaskItem>
+﻿@model SanmolTaskManager_Models.ViewModels.TaskIndexViewModel
 
 @{
     ViewData["Title"] = "Task List";
-    var statusFilter = ViewBag.StatusFilter as string ?? "Pending";
-    int currentPage = ViewBag.CurrentPage ?? 1;
-    int totalPages = ViewBag.TotalPages ?? 1;
+    var statusFilter = Model.Status ?? "Pending";
+    int currentPage = Model.CurrentPage;
+    int totalPages = Model.TotalPages;
     string statusTitle = statusFilter switch
     {
         "Pending" => "Total Pending Tasks",
         "Completed" => "Total Completed Tasks",
         _ => "Total Tasks"
     };
-    int totalFilteredCount = ViewBag.TotalFilteredCount ?? 0;
+    int totalFilteredCount = Model.TotalFilteredCount;
 }
 
 <div class="container-fluid">
@@ -34,7 +34,9 @@
     <div class="mb-3 d-flex justify-content-between align-items-center">
         <div class="btn-toolbar" role="toolbar">
             <div class="btn-group mb-2 mr-2" role="group">
-                <a asp-action="AddOrEdit" class="btn btn-primary">
+                <a asp-action="AddOrEdit" asp-route-page="@Model.CurrentPage"
+                   asp-route-pageSize="@Model.PageSize"
+                   asp-route-statusFilter="@Model.Status" class="btn btn-primary">
                     <i class="fas fa-plus-circle"></i> Add Task
                 </a>
             </div>
@@ -56,9 +58,9 @@
 
                 <label class="mr-2 ml-3">Page Size:</label>
                 <select name="pageSize" onchange="this.form.submit()" class="form-control">
-                    <option value="5" selected="@(ViewBag.PageSize == 5 ? "selected" : null)">5</option>
-                    <option value="10" selected="@(ViewBag.PageSize == 10 ? "selected" : null)">10</option>
-                    <option value="20" selected="@(ViewBag.PageSize == 20 ? "selected" : null)">20</option>
+                    <option value="5" selected="@(Model.PageSize == 5 ? "selected" : null)">5</option>
+                    <option value="10" selected="@(Model.PageSize == 10 ? "selected" : null)">10</option>
+                    <option value="20" selected="@(Model.PageSize == 20 ? "selected" : null)">20</option>
                 </select>
             </form>
         </div>
@@ -76,6 +78,7 @@
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+
         $(document).ready(function () {
             $(document).on('click', '.mark-complete', function () {
                 var id = $(this).data('id');
@@ -101,7 +104,11 @@
                                     'The task has been marked as completed.',
                                     'success'
                                 );
-                                fetchTasks(); // Reload the table via AJAX
+                                const status = $("select[name='status']").val();
+                                const pageSize = $("select[name='pageSize']").val();
+                                const currentPage = $('.pagination .active .page-link').data('page') || 1;
+                                reloadIndex(currentPage, status, pageSize);
+
                             },
                             error: function () {
                                 Swal.fire(
@@ -174,6 +181,13 @@
                     }
                 });
             });
+
+            function reloadIndex(currentPage, status, pageSize) {
+
+                const url = `/Task/Index?page=${currentPage}&status=${status}&pageSize=${pageSize}`;
+                window.location.href = url;
+            }
+
 
             function fetchTasks(page = 1, sortOrder = getCurrentSort()) {
                 const status = $("select[name='status']").val();

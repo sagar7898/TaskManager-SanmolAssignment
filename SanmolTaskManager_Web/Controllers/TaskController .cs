@@ -4,6 +4,8 @@ using OfficeOpenXml;
 using SanmolTaskManager_BLL.Interfaces;
 using SanmolTaskManager_BLL.Services;
 using SanmolTaskManager_Models;
+using SanmolTaskManager_Models.ViewModels;
+using System.Drawing.Printing;
 
 namespace SanmolTaskManager_Web.Controllers
 {
@@ -23,53 +25,67 @@ namespace SanmolTaskManager_Web.Controllers
             _searchService = searchService;
         }
 
+        // -------------------- List & Search --------------------
+
         public async Task<IActionResult> Index(string search, string status = "Pending", int page = 1, string sortOrder = "asc", int pageSize = 5)
         {
-            IEnumerable<TaskItem> tasks;
-            int totalCount;
-            ViewBag.SortOrder = sortOrder;
-            ViewBag.PageSize = pageSize;
-
-
+            ViewBag.ShowSearchBox = true;
             if (!string.IsNullOrWhiteSpace(search))
             {
-                tasks = await _searchService.SearchTasksAsync(search);
-                totalCount = tasks.Count();
+                var tasks = await _searchService.SearchTasksAsync(search);
 
-                // Optional: filter search results by status if needed
                 if (status != "All")
-                {
                     tasks = tasks.Where(t => t.Status.Equals(status, StringComparison.OrdinalIgnoreCase));
-                    totalCount = tasks.Count();
-                }
 
-                ViewBag.TotalPages = 1; // or calculate based on filtered results if needed
-                ViewBag.CurrentPage = 1;
-            }
-            else
-            {
-                if (status == "All")
+                var viewModel = new TaskIndexViewModel
                 {
-                    // Fetch without filtering status
-                    (tasks, totalCount) = await _taskService.GetAllPagedAsync(page, pageSize, sortOrder);
-                }
-                else
-                {
-                    (tasks, totalCount) = await _taskService.FindPagedAsync(status, page, pageSize, sortOrder);
-                }
-                ViewBag.TotalPages = (int)Math.Ceiling((double)totalCount / pageSize);
-                ViewBag.CurrentPage = page;
+                    Tasks = tasks,
+                    Search = search,
+                    Status = status,
+                    SortOrder = sortOrder,
+                    PageSize = pageSize,
+                    CurrentPage = 1,
+                    TotalCount = tasks.Count(),
+                    TotalFilteredCount = tasks.Count()
+                };
+
+                return View(viewModel);
             }
-            ViewBag.TotalFilteredCount = totalCount; // 👈 Add this line
-            ViewBag.ShowSearchBox = true;
-            ViewBag.StatusFilter = status;
-            return View(tasks);
+
+            var taskViewModel = await _taskService.GetTaskIndexAsync(search, status, page, pageSize, sortOrder);
+            return View(taskViewModel);
         }
 
-        public async Task<IActionResult> AddOrEdit(int? id)
+        public async Task<IActionResult> LoadTable(string status = "Pending", int page = 1, int pageSize = 5, string sortOrder = "desc")
         {
             try
             {
+                var viewModel = await _taskService.GetTaskIndexAsync(null, status, page, pageSize, sortOrder);
+                return PartialView("_TaskTable", viewModel);
+            }
+            catch (Exception ex)
+            {
+                return PartialView("_TaskTable", new TaskIndexViewModel
+                {
+                    Tasks = Enumerable.Empty<TaskItem>(),
+                    Status = status,
+                    SortOrder = sortOrder,
+                    PageSize = pageSize,
+                    CurrentPage = page,
+                    TotalCount = 0
+                });
+            }
+        }
+
+        // -------------------- Add or Edit --------------------
+
+        public async Task<IActionResult> AddOrEdit(int? id, int page = 1, int pageSize = 10, string statusFilter = null)
+        {
+            try
+            {
+                ViewBag.Page = page;
+                ViewBag.PageSize = pageSize;
+                ViewBag.StatusFilter = statusFilter;
                 var (customers, _) = await _customerService.GetAllPagedAsync(1, 100);
                 ViewBag.Customers = customers;
 
@@ -94,36 +110,30 @@ namespace SanmolTaskManager_Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit(TaskItem task)
+        public async Task<IActionResult> AddOrEdit(TaskItem task, int page = 1, int pageSize = 5, string statusFilter = null)
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
-                    var (customers, _) = await _customerService.GetAllPagedAsync(1, 100);
-                    ViewBag.Customers = customers;
-                    return View(task);
+                    return View(task); // return to form with validation errors
                 }
 
-                if (task.Id == 0)
-                {
-                    await _taskService.AddAsync(task);
-                    TempData["Success"] = "Task added successfully!";
-                }
-                else
-                {
-                    await _taskService.UpdateAsync(task);
-                    TempData["Success"] = "Task updated successfully!";
-                }
+                bool isNew = task.Id == 0;
 
-                return RedirectToAction(nameof(Index));
+                await _taskService.AddOrUpdateTaskAsync(task, page, pageSize);
+
+                TempData["Success"] = isNew ? "Task added successfully!" : "Task updated successfully!";
+                return RedirectToAction(nameof(Index), new { page = page, pageSize = pageSize, status = statusFilter });
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "An error occurred while saving the task.";
+                ModelState.AddModelError("", "Something went wrong: " + ex.Message);
                 return View(task);
             }
         }
+
+        // -------------------- Mark Complete --------------------
 
         [HttpPost]
         public async Task<IActionResult> MarkComplete(int id)
@@ -142,6 +152,8 @@ namespace SanmolTaskManager_Web.Controllers
                 return BadRequest(new { success = false, message = "Failed to mark task as completed." });
             }
         }
+
+        // -------------------- Export --------------------
 
         public async Task<IActionResult> ExportToExcel(string status = "Pending")
         {
@@ -167,25 +179,6 @@ namespace SanmolTaskManager_Web.Controllers
             {
                 TempData["Error"] = "An error occurred while exporting to Excel.";
                 return RedirectToAction(nameof(Index));
-            }
-        }
-
-        public async Task<IActionResult> LoadTable(string status = "Pending", int page = 1, int pageSize = 5, string sortOrder = "desc")
-        {
-            try
-            {
-                var (tasks, totalCount) = await _taskService.FindPagedAsync(status, page, pageSize, sortOrder);
-                ViewBag.CurrentPage = page;
-                ViewBag.TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
-                ViewBag.StatusFilter = status;
-                ViewBag.PageSize = pageSize;
-                ViewBag.SortOrder = sortOrder;
-
-                return PartialView("_TaskTable", tasks);
-            }
-            catch (Exception ex)
-            {
-                return PartialView("_TaskTable", Enumerable.Empty<TaskItem>());
             }
         }
     }

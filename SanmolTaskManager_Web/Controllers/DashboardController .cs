@@ -24,7 +24,6 @@ namespace SanmolTaskManager_Web.Controllers
                 var stats = await _taskService.GetDashboardStatsAsync();
                 var recentTasks = await _taskService.GetRecentTasksAsync();
                 var totalCustomers = await _customerService.GetTotalCountAsync();
-
                 ViewBag.RecentTasks = recentTasks;
                 ViewBag.TotalCustomers = totalCustomers;
 

@@ -15,10 +15,17 @@
     {
         <form method="get" asp-controller="@currentController" asp-action="Index"
               class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+
+            <!-- 🔁 Hidden status to preserve filter -->
+            <input type="hidden" name="status" value="@Context.Request.Query["status"]" />
+            <input type="hidden" name="pageSize" value="@Context.Request.Query["pageSize"]" />
             <div class="input-group">
                 <!-- 🔄 Refresh Button -->
                 <div class="input-group-prepend">
-                    <a asp-controller="@currentController" asp-action="Index" title="Refresh"
+                    <a asp-controller="@currentController" asp-action="Index"
+                       asp-route-status="@Context.Request.Query["status"]"
+                       asp-route-pageSize="@Context.Request.Query["pageSize"]"
+                       title="Refresh"
                        class="d-flex align-items-center text-primary px-2">
                         <i class="fas fa-sync-alt fa-sm"></i>
                     </a>

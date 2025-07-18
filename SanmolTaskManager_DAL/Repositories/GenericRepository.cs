@@ -18,69 +18,13 @@ namespace SanmolTaskManager_DAL.Repositories
             _dbSet = _context.Set<T>();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
-        {
-            try
-            {
-                return await _dbSet.ToListAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        // --------------------- READ ---------------------
 
         public async Task<T> GetByIdAsync(int id)
         {
             try
             {
                 return await _dbSet.FindAsync(id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
-        {
-            try
-            {
-                return await _dbSet.Where(predicate).ToListAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public async Task AddAsync(T entity)
-        {
-            try
-            {
-                await _dbSet.AddAsync(entity);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public void Update(T entity)
-        {
-            _dbSet.Update(entity);
-        }
-
-        public void Delete(T entity)
-        {
-            _dbSet.Remove(entity);
-        }
-
-        public async Task SaveAsync()
-        {
-            try
-            {
-                await _context.SaveChangesAsync();
             }
             catch (Exception)
             {
@@ -106,18 +50,18 @@ namespace SanmolTaskManager_DAL.Repositories
             }
         }
 
-        public async Task<(IEnumerable<T> Items, int TotalCount)> FindPagedAsync(Expression<Func<T, bool>> predicate, int pageNumber, int pageSize)
+        public IQueryable<T> Query()
+        {
+            return _dbSet.AsQueryable();
+        }
+
+        // --------------------- WRITE ---------------------
+
+        public async Task AddAsync(T entity)
         {
             try
             {
-                var query = _dbSet.Where(predicate);
-                var totalCount = await query.CountAsync();
-                var items = await query
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize)
-                    .ToListAsync();
-
-                return (items, totalCount);
+                await _dbSet.AddAsync(entity);
             }
             catch (Exception)
             {
@@ -125,9 +69,23 @@ namespace SanmolTaskManager_DAL.Repositories
             }
         }
 
-        public IQueryable<T> Query()
+        public void Update(T entity)
         {
-            return _dbSet.AsQueryable();
+            _dbSet.Update(entity);
+        }
+
+        // --------------------- SAVE ---------------------
+
+        public async Task SaveAsync()
+        {
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

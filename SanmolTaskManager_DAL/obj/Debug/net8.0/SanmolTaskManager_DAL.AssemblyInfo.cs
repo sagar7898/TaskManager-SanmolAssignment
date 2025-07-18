@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SanmolTaskManager_DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e26ee54212587876b28c806bacba07bd94fbb386")]
 [assembly: System.Reflection.AssemblyProductAttribute("SanmolTaskManager_DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SanmolTaskManager_DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

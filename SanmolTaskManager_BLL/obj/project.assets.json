@@ -9716,11 +9716,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_BLL\\SanmolTaskManager_BLL.csproj",
+      "projectUniqueName": "C:\\Users\\sagar\\OneDrive\\Desktop\\TaskManager-SanmolAssignment\\SanmolTaskManager_BLL\\SanmolTaskManager_BLL.csproj",
       "projectName": "SanmolTaskManager_BLL",
-      "projectPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_BLL\\SanmolTaskManager_BLL.csproj",
+      "projectPath": "C:\\Users\\sagar\\OneDrive\\Desktop\\TaskManager-SanmolAssignment\\SanmolTaskManager_BLL\\SanmolTaskManager_BLL.csproj",
       "packagesPath": "C:\\Users\\sagar\\.nuget\\packages\\",
-      "outputPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_BLL\\obj\\",
+      "outputPath": "C:\\Users\\sagar\\OneDrive\\Desktop\\TaskManager-SanmolAssignment\\SanmolTaskManager_BLL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -9740,8 +9740,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_DAL\\SanmolTaskManager_DAL.csproj": {
-              "projectPath": "E:\\Sanmol Software Solution Assessment Test\\SanmolTaskManager_Web\\SanmolTaskManager_DAL\\SanmolTaskManager_DAL.csproj"
+            "C:\\Users\\sagar\\OneDrive\\Desktop\\TaskManager-SanmolAssignment\\SanmolTaskManager_DAL\\SanmolTaskManager_DAL.csproj": {
+              "projectPath": "C:\\Users\\sagar\\OneDrive\\Desktop\\TaskManager-SanmolAssignment\\SanmolTaskManager_DAL\\SanmolTaskManager_DAL.csproj"
             }
           }
         }

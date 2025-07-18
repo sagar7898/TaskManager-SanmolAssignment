@@ -79,9 +79,17 @@
 
                         <!-- Buttons -->
                         <div class="form-group d-flex justify-content-between">
-                            <a asp-action="Index" class="btn btn-outline-secondary px-4">
+                            <a asp-action="Index"
+                               asp-route-page="@ViewBag.Page"
+                               asp-route-pageSize="@ViewBag.PageSize"
+                               asp-route-status="@ViewBag.StatusFilter"
+                               class="btn btn-outline-secondary px-4">
                                 <i class="fas fa-arrow-left mr-1"></i> Back
                             </a>
+
+                            <input type="hidden" name="pageSize" value="@ViewBag.PageSize" />
+                            <input type="hidden" name="statusFilter" value="@ViewBag.StatusFilter" />
+
                             <button type="submit" class="btn btn-primary px-4 shadow">
                                 <i class="fas fa-save mr-1"></i> Save
                             </button>

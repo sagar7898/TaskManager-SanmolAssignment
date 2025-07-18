@@ -15,3 +15,21 @@ E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskMana
 E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\obj\Debug\net8.0\refint\SanmolTaskManager_BLL.dll
 E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.pdb
 E:\Sanmol Software Solution Assessment Test\SanmolTaskManager_Web\SanmolTaskManager_BLL\obj\Debug\net8.0\ref\SanmolTaskManager_BLL.dll
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\bin\Debug\net8.0\SanmolTaskManager_BLL.deps.json
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\bin\Debug\net8.0\SanmolTaskManager_BLL.dll
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\bin\Debug\net8.0\SanmolTaskManager_BLL.pdb
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\bin\Debug\net8.0\SanmolTaskManager_DAL.dll
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\bin\Debug\net8.0\SanmolTaskManager_Models.dll
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\bin\Debug\net8.0\SanmolTaskManager_DAL.pdb
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\bin\Debug\net8.0\SanmolTaskManager_Models.pdb
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.csproj.AssemblyReference.cache
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.AssemblyInfoInputs.cache
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.AssemblyInfo.cs
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.csproj.CoreCompileInputs.cache
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.sourcelink.json
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.csproj.CopyComplete
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.dll
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\obj\Debug\net8.0\refint\SanmolTaskManager_BLL.dll
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\obj\Debug\net8.0\SanmolTaskManager_BLL.pdb
+C:\Users\sagar\OneDrive\Desktop\TaskManager-SanmolAssignment\SanmolTaskManager_BLL\obj\Debug\net8.0\ref\SanmolTaskManager_BLL.dll

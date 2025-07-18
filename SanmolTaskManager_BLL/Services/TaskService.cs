@@ -7,17 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using SanmolTaskManager_Models.ViewModels;
 
 namespace SanmolTaskManager_BLL.Services
 {
     public class TaskService : ITaskService
     {
         private readonly IGenericRepository<TaskItem> _taskRepo;
+        private const int PageSize = 5;
 
         public TaskService(IGenericRepository<TaskItem> taskRepo)
         {
             _taskRepo = taskRepo;
         }
+
+        // -------------------- Paging & Filtering --------------------
 
         public async Task<(IEnumerable<TaskItem> Tasks, int TotalCount)> GetAllPagedAsync(int pageNumber, int pageSize, string sortOrder = "desc")
         {
@@ -75,6 +79,8 @@ namespace SanmolTaskManager_BLL.Services
                 throw new Exception("Error in FindPagedAsync", ex);
             }
         }
+
+        // -------------------- CRUD --------------------
 
         public async Task<TaskItem> GetByIdAsync(int id)
         {
@@ -135,6 +141,8 @@ namespace SanmolTaskManager_BLL.Services
             }
         }
 
+        // -------------------- Dashboard & Stats --------------------
+
         public async Task<DashboardStats> GetDashboardStatsAsync()
         {
             try
@@ -182,6 +190,8 @@ namespace SanmolTaskManager_BLL.Services
             }
         }
 
+        // -------------------- Customer-Specific --------------------
+
         public async Task<List<TaskItem>> GetTasksByCustomerIdAsync(int customerId)
         {
             try
@@ -195,6 +205,77 @@ namespace SanmolTaskManager_BLL.Services
             catch (Exception ex)
             {
                 throw new Exception("Error in GetTasksByCustomerIdAsync", ex);
+            }
+        }
+
+        // -------------------- ViewModel Builder --------------------
+
+        public async Task<TaskIndexViewModel> GetTaskIndexAsync(string search, string status, int page, int pageSize, string sortOrder)
+        {
+            IEnumerable<TaskItem> tasks;
+            int totalCount;
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                throw new InvalidOperationException("Search must be handled in controller or injected.");
+            }
+
+            int totalFilteredCount = await _taskRepo.Query()
+                .Include(t => t.Customer)
+                .Where(t =>
+                    !t.IsDeleted &&
+                    t.Customer != null &&
+                    !t.Customer.IsDeleted &&
+                    (status == "All" || t.Status == status)
+                )
+                .CountAsync();
+
+            if (status == "All")
+                (tasks, totalCount) = await GetAllPagedAsync(page, pageSize, sortOrder);
+            else
+                (tasks, totalCount) = await FindPagedAsync(status, page, pageSize, sortOrder);
+
+            return new TaskIndexViewModel
+            {
+                Tasks = tasks,
+                Search = search,
+                Status = status,
+                SortOrder = sortOrder,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalCount = totalCount,
+                TotalFilteredCount = totalFilteredCount
+            };
+        }
+
+        // -------------------- AJAX Add/Update Handler --------------------
+
+        public async Task<object> AddOrUpdateTaskAsync(TaskItem task, int currentPage, int pageSize)
+        {
+            if (task.Id == 0)
+            {
+                await AddAsync(task);
+
+                int totalTasks = await _taskRepo.Query().CountAsync();
+                int lastPage = (int)Math.Ceiling((double)totalTasks / pageSize);
+
+                return new
+                {
+                    success = true,
+                    message = "Task added successfully!",
+                    redirectUrl = $"/Task/Index?page={lastPage}&pageSize={pageSize}"
+                };
+            }
+            else
+            {
+                await UpdateAsync(task);
+
+                return new
+                {
+                    success = true,
+                    message = "Task updated successfully!",
+                    redirectUrl = $"/Task/Index?page={currentPage}&pageSize={pageSize}"
+                };
             }
         }
     }
