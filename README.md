@@ -201,6 +201,29 @@ All, Completed, or Pending — only filtered tasks are exported
 
 •	Execute the provided SQL Script to set up the database schema and data
 
+ScreenShots :
+
+Login page <p float="left">
+  <img src="assets/LoginPage" width="300" />
+</p>
+
+Dashboard :
+
+<p float="left">
+  <img src="assets/Dashboard" width="300" />
+</p>
+
+Customer :
+<p float="left">
+  <img src="assets/CustomerIndex" width="300" />
+  <img src="assets/AddCustomer" width="300" />
+</p>
+
+Task :
+<p float="left">
+  <img src="assets/TaskIndex" width="300" />
+  <img src="assets/AddTask" width="300" />
+</p>
 
 
 🙋‍♂️ Contact
